@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="card" style=" margin-top: 20px">
+    <div class="card-header">
+
+        <h3>Students Calculator for class</h3>
+
+    </div>
+    <div class="card-body">
+        <h3>Enter Two Numbers</h3>
+
+        <form method="post">
+            <div class="form-group">
+                <div class="row">
+
+
+                    <label asp-for="NumberA"></label>
+                    <input type="number" name="NumberA" class="col-lg-2" />
+
+                    <label asp-for="NumberB"></label>
+                    <input type="number" name="NumberB" class="col-lg-2" />
+
+                    <select asp-for="OperationSelection" asp-items="@Model.Operations"></select>
+                    
+                </div>
+
+                <div class="row">
+                    <input  class="col-lg-2" type="submit" value="Submit" asp-action="Index" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <h3>See the Result</h3>
+
+        <div class="row">
+
+            <label asp-for="Result"></label>
+            <input asp-for="Result" type="number" name="Result" disabled="disabled" class="col-lg-2" />
+            <label asp-for="Result">@Model.NumberA   +    @Model.NumberB   =   @Model.Result</label>
+
+
+            @foreach (var item in @Model.Answers)
+            {
+                <p>@item</p>
+            }
+
+
+        </div>
+    </div>
+</div>
